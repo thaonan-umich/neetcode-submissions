@@ -1,0 +1,28 @@
+// 还是动态规划
+// 但是为什么我刷的有点烦了 天天刷DP有点难受了 不知道为啥
+// 先暂时不想这个，开始想思路
+// 依旧递归写法
+// 从整个串开始，开两个递归搜索分别向左和右方向收缩 （之前是不是做过？） -> substring 哦哟还真是有点像 Longest Palindromic Substring
+// 至于要记什么之后再说，先把 LPS 的模板套上来再说
+// 妈的这模板套一下复杂度还是他妈的  O(n^3) 操了
+// 还不如先写这一版暴力解法，妈的手里有DP模板看啥都像DP
+
+class Solution {
+public:
+
+    int maxProduct(vector<int>& nums) {
+        int answer = nums[0];
+
+        // 固定左断点，右断点不断右伸
+        for(int left = 0; left < nums.size(); left++){
+            int product = 1;
+
+            for (int right = left; right < nums.size(); right++){
+                product *= nums[right];
+                answer = max(answer, product);
+            }
+        }
+
+        return answer;
+    }
+};
